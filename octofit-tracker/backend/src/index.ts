@@ -1,15 +1,15 @@
-import express from 'express';
 import mongoose from 'mongoose';
+import { createApp } from './app';
 
-const app = express();
+const app = createApp();
 const port = process.env.PORT || 8000;
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/octofit_db';
+const codespaceName = process.env.CODESPACE_NAME;
+const baseUrl = codespaceName
+  ? `https://${codespaceName}-8000.app.github.dev`
+  : 'http://localhost:8000';
 
-app.use(express.json());
-
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', service: 'octofit-backend' });
-});
+console.log(`API base URL: ${baseUrl}`);
 
 mongoose
   .connect(mongoUri)
