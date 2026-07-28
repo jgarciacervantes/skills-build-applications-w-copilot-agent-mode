@@ -12,6 +12,7 @@ const codespaceName = process.env.CODESPACE_NAME;
 const baseUrl = codespaceName
     ? `https://${codespaceName}-8000.app.github.dev`
     : 'http://localhost:8000';
+console.log(`Backend listening on port ${port}`);
 console.log(`API base URL: ${baseUrl}`);
 mongoose_1.default
     .connect(mongoUri)
