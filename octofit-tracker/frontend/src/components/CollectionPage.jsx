@@ -19,7 +19,7 @@ function getCellValue(record, fields) {
   return String(value)
 }
 
-export default function CollectionPage({ resource, title, description, columns }) {
+export default function CollectionPage({ resource, apiUrl, title, description, columns }) {
   const [records, setRecords] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -28,7 +28,7 @@ export default function CollectionPage({ resource, title, description, columns }
   useEffect(() => {
     const controller = new AbortController()
 
-    fetchCollection(resource, controller.signal)
+    fetchCollection(apiUrl, controller.signal)
       .then(setRecords)
       .catch((requestError) => {
         if (requestError.name !== 'AbortError') {
@@ -40,7 +40,7 @@ export default function CollectionPage({ resource, title, description, columns }
       })
 
     return () => controller.abort()
-  }, [resource, reloadCount])
+  }, [resource, apiUrl, reloadCount])
 
   return (
     <section aria-labelledby={`${resource}-heading`}>
