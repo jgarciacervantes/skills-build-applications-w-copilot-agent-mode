@@ -30,3 +30,13 @@ If you are developing a production application, we recommend enabling type-aware
 ```
 
 See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+
+## API configuration
+
+In Codespaces, define `VITE_CODESPACE_NAME` in `octofit-tracker/frontend/.env.local`:
+
+```env
+VITE_CODESPACE_NAME=your-codespace-name
+```
+
+The variable is required for Codespaces API access at `https://<codespace-name>-8000.app.github.dev`. Restart Vite after changing it. When running locally without this variable, the frontend safely uses `http://localhost:8000`.
